@@ -1,5 +1,5 @@
 <template>
-  <div class="main row  text-center align-items-center">
+  <div class="main row text-center align-items-center">
     <div class="col-6 images">
       <img class="img img1" src="@/assets/img1.png" alt="">
       <img class="img img2" src="@/assets/img2.png" alt="">
@@ -20,16 +20,18 @@
         whether these experiences are good or bad<br>
         and saves you time and effort.
       </p>
-      <div class="row  justify-content-center ">
+      <div class="row justify-content-center">
         <div class="col-2">
           <router-link to="/signUp" class="btn btn-secondary">Sign Up</router-link>
-        </div> <div class="col-2">
+        </div>
+        <div class="col-2">
           <router-link to="/signIn" class="btn btn-secondary">Sign In</router-link>
         </div>
       </div>
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import { onMounted } from 'vue';
 
@@ -40,6 +42,7 @@ onMounted(() => {
   images.forEach((img: Element) => {
     const image = img as HTMLElement;
     image.style.opacity = '0';
+    image.style.transition = 'opacity 0.5s ease-in-out'; // Added transition property
   });
 
   const intervalId = setInterval(() => {
@@ -55,6 +58,7 @@ onMounted(() => {
   }, 500);
 });
 </script>
+
 <style lang="scss" scoped>
 .row {
   --bs-gutter-x: 0;
@@ -125,7 +129,5 @@ onMounted(() => {
   p {
     color: #B758BB;
   }
-
-
 }
-</style> 
+</style>

@@ -3,6 +3,7 @@ import Review from "../views/Review.vue";
 const Loading = () => import("@/views/Loading.vue");
 const SignUp = () => import("@/views/SignUp.vue");
 const SignIn =() => import("@/views/SignIn.vue");
+const Home =() => import("@/views/Home.vue");
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,9 +29,9 @@ const router = createRouter({
       component: SignIn,
     },
     {
-      path: "/about",
-      name: "about",
-      component: () => import("../views/AboutView.vue"),
+      path: "/home",
+      name: "home",
+      component: Home,
     },
   ],
 });
