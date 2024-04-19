@@ -1,0 +1,49 @@
+<template>
+    <div class="main">
+        <div class="d-flex first pb-4">
+            <img src="@/assets/logo.webp" alt="">
+            <p class="m-3 mt-4">REVIEW</p>
+        </div>
+        <div class="second text-center">
+            <h6 class="my-4">WELCOME !!</h6>
+            <p>we're happy to be in the review community</p>
+            <div class="display-flex">
+                <label for="" class="me-5 mt-3">NAME :</label>
+                <input type="text" name="" id="" placeholder="Enter Your Name" class="input-field">
+            </div>
+            <div class="display-flex">
+                <label for="" class="me-5 mt-4">EMAIL :</label>
+                <input type="email" name="" id="" placeholder="Enter Your EMAIL " class="input-field">
+            </div>
+            <div class="display-flex">
+                <label for="" class="me-3 mt-4">PASSWOED :</label>
+                <input type="password" name="" id="" placeholder="Enter Your PASSWOED" class="input-field">
+            </div>
+            <div class="m-5 ps-5">
+                <button class="btn btn-info rounded-5 text-light p-2 px-5" >CREATE ACCOUNT</button>
+                <p class="mt-4">Already hava an account ? <span>Sgin In</span>  </p>
+            </div>
+        </div>
+    </div>
+</template>
+  
+<style lang="scss" scoped>
+.main {
+    margin: 100px 350px;
+
+    img {
+        height: 60px;
+        width: 60px;
+    }
+
+    .first {
+        border-bottom: 2px solid rgb(0, 0, 0);
+    }
+
+    .input-field {
+        border: none;
+        border-bottom: 2px solid rgb(0, 0, 0);
+        outline: none;
+    }
+}
+</style>
