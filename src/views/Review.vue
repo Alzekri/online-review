@@ -21,8 +21,11 @@
         and saves you time and effort.
       </p>
       <div class="row  justify-content-center ">
-        <div class="col-2"> <button class="btn btn-secondary">Sign Up</button></div>
-        <div class="col-2"> <button class="btn btn-secondary">Sign In</button></div>
+        <div class="col-2">
+          <router-link to="/signUp" class="btn btn-secondary">Sign Up</router-link>
+        </div> <div class="col-2">
+          <router-link to="/signIn" class="btn btn-secondary">Sign In</router-link>
+        </div>
       </div>
     </div>
   </div>

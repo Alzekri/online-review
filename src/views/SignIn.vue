@@ -17,7 +17,7 @@
             </div>
             <div class="m-5 ps-5">
                 <button class="btn btn-info rounded-5 text-light p-2 px-5">Sign In</button>
-                <p class="mt-4">No account ?<span>Sgin Up</span> </p>
+                <p class="mt-4">No account ? <router-link to="/signUp">Sgin Up</router-link> </p>
             </div>
         </div>
     </div>
