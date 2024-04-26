@@ -1,7 +1,7 @@
 <template>
     <div class="main">
         <div class="d-flex first pb-4">
-            <img src="@/assets/logo.webp" alt="">
+            <img src="@/assets/logo.webp" class="rounded-5" alt="">
             <p class="m-3 mt-4">REVIEW</p>
         </div>
         <div class="second text-center">
@@ -20,8 +20,8 @@
                 <input type="password" name="" id="" placeholder="Enter Your PASSWOED" class="input-field">
             </div>
             <div class="m-5 ps-5">
-                <button class="btn btn-info rounded-5 text-light p-2 px-5" >CREATE ACCOUNT</button>
-                <p class="mt-4">Already hava an account ? <router-link to="/signIn">Sgin In</router-link>  </p>
+                <button class="btn btn-info rounded-5 text-light p-2 px-5">CREATE ACCOUNT</button>
+                <p class="mt-4">Already hava an account ? <router-link to="/signIn">Sgin In</router-link> </p>
             </div>
         </div>
     </div>

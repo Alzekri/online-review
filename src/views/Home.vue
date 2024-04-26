@@ -1,15 +1,6 @@
 <template>
   <div class="main">
-    <div class="d-flex first pb-2">
-      <img class="imgg" src="@/assets/logo.webp" alt="">
-      <p class="m-3 mt-4">REVIEW</p>
-      <div class="pt-3 ms-5 ps-5">
-        <router-link to="" class="btn  ms-5 me-4" exact> FOR YOU</router-link>
-        <router-link to="" class="btn   me-4"> YOR FRIEND</router-link>
-        <router-link to="" class="btn   me-4"> SEARCH</router-link>
-        <router-link to="" class="btn   me-4"> YOUR PROFILE</router-link>
-      </div>
-    </div>
+    <nabvar />
 
     <div class="m-auto">
       <h6 class="my-5">What are you looking for?</h6>
@@ -38,12 +29,11 @@
     </div>
     <div class="circle6 circle">
     </div>
-
-
   </div>
 </template>
  
 <script setup lang="ts">
+import Nabvar from '@/components/Nabvar.vue';
 import { onMounted } from 'vue';
 
 onMounted(() => {
@@ -105,19 +95,8 @@ function hideImagesExceptImg9() {
 .main {
   margin: 20px 80px;
 
-  .imgg {
-    height: 60px;
-    width: 60px;
-  }
 
-  .first {
-    border-bottom: 2px solid rgb(0, 0, 0);
-  }
 
-  .btn {
-    background-color: #f39999;
-    color: white;
-  }
 }
 
 .images {
