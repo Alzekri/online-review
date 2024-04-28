@@ -8,6 +8,7 @@ const Posts =() => import("@/views/Posts.vue");
 const Search =() => import("@/views/Search.vue");
 const Friends =() => import("@/views/Friends.vue");
 const Profile =() => import("@/views/Profile.vue");
+const CreatePost =() => import("@/views/CreatePost.vue");
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -56,6 +57,11 @@ const router = createRouter({
       path: "/profile",
       name: "profile",
       component: Profile,
+    },
+    {
+      path: "/create",
+      name: "create",
+      component: CreatePost,
     },
   ],
 });

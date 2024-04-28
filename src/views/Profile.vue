@@ -5,6 +5,8 @@
             <img src="@/assets/logo.webp" alt="" width="100" >
             <h3 class="text-light mt-4  ">Albatool </h3>
             <h3 class="text-light mt-4  ">12 Posts </h3>
+            <router-link to="/create" class="text-decoration-none"><h3 class="text-light mt-4  ">+ADD </h3>
+</router-link>
         </div>
 
         <div class="d-flex justify-content-between flex-wrap">
