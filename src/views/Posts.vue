@@ -24,7 +24,7 @@
                     <div class="comment">
                         <div class="comment-author">John Smith</div>
                         <div class="comment-text">Great transformation!</div>
-                        <hr>
+                        <hr class="mx-5 ">
                     </div>
 
                     <div class="comment">

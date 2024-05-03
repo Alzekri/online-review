@@ -4,7 +4,7 @@
     <p class="m-3 mt-4">REVIEW</p>
     <div class="pt-3 ms-5 ps-5">
       <router-link to="/posts" class="btn  ms-5 me-4" exact> FOR YOU</router-link>
-      <router-link to="/friends" class="btn   me-4"> YOUUR FRIEND</router-link>
+      <router-link to="/friends" class="btn   me-4"> YOUR FRIEND</router-link>
       <router-link to="/search" class="btn   me-4"> SEARCH</router-link>
       <router-link to="/profile" class="btn   me-4"> YOUR PROFILE</router-link>
       <router-link to="/signIn" class="btn   me-4"> LOGOUT</router-link>
