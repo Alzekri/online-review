@@ -1,8 +1,18 @@
 <template>
     <div class="main">
         <Nabvar></Nabvar>
+        <div class="dropdown mt-3 ms-5 ">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Filtering
+            </button>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                <li><a class="dropdown-item" href="#" @click="selectView('all')">All Posts</a></li>
+                <li><a class="dropdown-item" href="#" @click="selectView('friends')">Friends</a></li>
+            </ul>
+        </div>
         <div class="d-flex justify-content-between flex-wrap">
-            <div v-for="post in postsFriends" :key="post.post_id" class="border border-dark rounded-5 m-3 p-3"
+            <div v-for="post in currentPosts" :key="post.post_id"  class="border border-dark rounded-5 m-3 p-3"
                 style="width: 30%;">
                 <div class="d-flex mb-2">
                     <img src="@/assets/logo.webp" class="rounded-5" alt="" width="50">
@@ -37,14 +47,14 @@
         </div>
     </div>
 </template>
-
 <script setup lang="ts">
+import Nabvar from '@/components/Nabvar.vue';
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
-import Nabvar from '@/components/Nabvar.vue';
 
 const posts = ref([]);
 const postsFriends = ref([]);
+const currentPosts = ref([]); // Reactive variable to hold the currently displayed posts
 
 const fetchPosts = async () => {
     try {
@@ -54,6 +64,7 @@ const fetchPosts = async () => {
         console.error('Failed to fetch posts:', error);
     }
 };
+
 const fetchPostsFriends = async () => {
     try {
         const response = await axios.post('http://localhost/onlineReview_api/api/posts/read_friends.php', {
@@ -61,14 +72,24 @@ const fetchPostsFriends = async () => {
         });
         postsFriends.value = response.data.data;
     } catch (error) {
-        console.error('Failed to fetch posts:', error);
+        console.error('Failed to fetch friends posts:', error);
     }
 };
 
-onMounted(fetchPostsFriends);
-onMounted(fetchPosts);
-</script>
+const selectView = (view) => {
+    if (view === 'all') {
+        currentPosts.value = posts.value;
+    } else {
+        currentPosts.value = postsFriends.value;
+    }
+};
 
+onMounted(() => {
+    fetchPosts().then(() => selectView('all')); // Default view
+    fetchPostsFriends();
+});
+
+</script>
 <style lang="scss" scoped>
 .main {
     margin: 20px 80px;
