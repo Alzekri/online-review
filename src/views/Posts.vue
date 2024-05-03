@@ -21,7 +21,9 @@
                     <div class="comment">
                         <div class="comment-author">John Smith</div>
                         <div class="comment-text">Great transformation!</div>
+                        <hr>
                     </div>
+
                     <div class="comment">
                         <div class="comment-author">Jane Doe</div>
                         <div class="comment-text">Love the new look!</div>
