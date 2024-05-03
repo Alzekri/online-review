@@ -17,9 +17,9 @@
             </div>
             <div class="m-5 ps-5">
                 <router-link to="/home">
-                    <button class="btn btn-info rounded-5 text-light p-2 px-5">Sign In</button>
+                    <button class="btn  rounded-5 text-light p-2 px-5">Sign In</button>
                 </router-link>
-                <p class="mt-4">No account ? <router-link to="/signUp">Sgin Up</router-link> </p>
+                <p class="mt-4">No account ? <router-link class="ro" to="/signUp">Sgin Up</router-link> </p>
             </div>
         </div>
     </div>
@@ -43,5 +43,12 @@
         border-bottom: 2px solid rgb(0, 0, 0);
         outline: none;
     }
+}
+.btn {
+  background-color: #f39999;
+}
+.ro{
+    color: #f39999;
+
 }
 </style>

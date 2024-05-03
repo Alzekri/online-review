@@ -5,17 +5,21 @@
             <img src="@/assets/logo.webp" alt="" width="100" >
             <h3 class="text-light mt-4  ">Albatool </h3>
             <h3 class="text-light mt-4  ">12 Posts </h3>
+            <router-link to="/create" class="text-decoration-none"><h3 class="text-light mt-4  ">+ADD </h3>
+</router-link>
         </div>
 
         <div class="d-flex justify-content-between flex-wrap">
         
-        
             <div class="border border-dark rounded-5 m-3 p-3" style="width: 30%;">
-                <div class="d-flex">
+                <div class="d-flex mb-2">
                     <img src="@/assets/logo.webp" class="rounded-5" alt="" width="50">
-                    <p class="m-2 ms-5 border-bottom">Albatool</p>
+                    <p class="m-2 mx-5 border-bottom">Samar Ali</p>
+                    <a class="m-2" href="http://localhost:5173/posts"> visit link</a>
                 </div>
-                <div class="d-flex justify-content-between mt-5">
+                <h6>Title</h6>
+                <p>Description</p>
+                <div class="d-flex justify-content-between mt-2">
                     <div>
                         <p class="text-center">Befor</p>
                         <img src="@/assets/logo.webp" class="rounded-5" alt="" width="130">
@@ -27,23 +31,27 @@
                 </div>
                 <div class="comments mt-5">
                     <div class="comment">
-                        <div class="comment-author">David Johnson</div>
-                        <div class="comment-text">Impressive transformation!</div>
+                        <div class="comment-author">John Smith</div>
+                        <div class="comment-text">Great transformation!</div>
                     </div>
                     <div class="comment">
-                        <div class="comment-author">Sarah Thompson</div>
-                        <div class="comment-text">You look amazing!</div>
+                        <div class="comment-author">Jane Doe</div>
+                        <div class="comment-text">Love the new look!</div>
                     </div>
-                    <div class="p-3"> <input type=" text" class="form-control rounded-5" placeholder="Write Your Comment">
+                    <div class="d-flex "> 
+                        <input type=" text" class="form-control w-75 rounded-5" placeholder="Write Your Comment"/>
+                        <button class="btn  rounded-5 text-light  px-4 ms-3">post</button>
                     </div>
                 </div>
-            </div>
-            <div class="border border-dark rounded-5 m-3 p-3" style="width: 30%;">
-                <div class="d-flex">
+            </div><div class="border border-dark rounded-5 m-3 p-3" style="width: 30%;">
+                <div class="d-flex mb-2">
                     <img src="@/assets/logo.webp" class="rounded-5" alt="" width="50">
-                    <p class="m-2 ms-5 border-bottom">Albatool</p>
+                    <p class="m-2 mx-5 border-bottom">Samar Ali</p>
+                    <a class="m-2" href="http://localhost:5173/posts"> visit link</a>
                 </div>
-                <div class="d-flex justify-content-between mt-5">
+                <h6>Title</h6>
+                <p>Description</p>
+                <div class="d-flex justify-content-between mt-2">
                     <div>
                         <p class="text-center">Befor</p>
                         <img src="@/assets/logo.webp" class="rounded-5" alt="" width="130">
@@ -55,23 +63,27 @@
                 </div>
                 <div class="comments mt-5">
                     <div class="comment">
-                        <div class="comment-author">David Johnson</div>
-                        <div class="comment-text">Impressive transformation!</div>
+                        <div class="comment-author">John Smith</div>
+                        <div class="comment-text">Great transformation!</div>
                     </div>
                     <div class="comment">
-                        <div class="comment-author">Sarah Thompson</div>
-                        <div class="comment-text">You look amazing!</div>
+                        <div class="comment-author">Jane Doe</div>
+                        <div class="comment-text">Love the new look!</div>
                     </div>
-                    <div class="p-3"> <input type=" text" class="form-control rounded-5" placeholder="Write Your Comment">
+                    <div class="d-flex "> 
+                        <input type=" text" class="form-control w-75 rounded-5" placeholder="Write Your Comment"/>
+                        <button class="btn  rounded-5 text-light  px-4 ms-3">post</button>
                     </div>
                 </div>
-            </div>
-            <div class="border border-dark rounded-5 m-3 p-3" style="width: 30%;">
-                <div class="d-flex">
+            </div><div class="border border-dark rounded-5 m-3 p-3" style="width: 30%;">
+                <div class="d-flex mb-2">
                     <img src="@/assets/logo.webp" class="rounded-5" alt="" width="50">
-                    <p class="m-2 ms-5 border-bottom">Albatool</p>
+                    <p class="m-2 mx-5 border-bottom">Samar Ali</p>
+                    <a class="m-2" href="http://localhost:5173/posts"> visit link</a>
                 </div>
-                <div class="d-flex justify-content-between mt-5">
+                <h6>Title</h6>
+                <p>Description</p>
+                <div class="d-flex justify-content-between mt-2">
                     <div>
                         <p class="text-center">Befor</p>
                         <img src="@/assets/logo.webp" class="rounded-5" alt="" width="130">
@@ -83,14 +95,16 @@
                 </div>
                 <div class="comments mt-5">
                     <div class="comment">
-                        <div class="comment-author">David Johnson</div>
-                        <div class="comment-text">Impressive transformation!</div>
+                        <div class="comment-author">John Smith</div>
+                        <div class="comment-text">Great transformation!</div>
                     </div>
                     <div class="comment">
-                        <div class="comment-author">Sarah Thompson</div>
-                        <div class="comment-text">You look amazing!</div>
+                        <div class="comment-author">Jane Doe</div>
+                        <div class="comment-text">Love the new look!</div>
                     </div>
-                    <div class="p-3"> <input type=" text" class="form-control rounded-5" placeholder="Write Your Comment">
+                    <div class="d-flex "> 
+                        <input type=" text" class="form-control w-75 rounded-5" placeholder="Write Your Comment"/>
+                        <button class="btn  rounded-5 text-light  px-4 ms-3">post</button>
                     </div>
                 </div>
             </div>

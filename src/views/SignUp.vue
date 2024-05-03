@@ -19,9 +19,13 @@
                 <label for="" class="me-3 mt-4">PASSWOED :</label>
                 <input type="password" name="" id="" placeholder="Enter Your PASSWOED" class="input-field">
             </div>
+            <div class="display-flex ">
+                <label for="" class="me-3 mt-4">IMAGE :</label>
+                <input type="file" class="input-field">
+            </div>
             <div class="m-5 ps-5">
-                <button class="btn btn-info rounded-5 text-light p-2 px-5">CREATE ACCOUNT</button>
-                <p class="mt-4">Already hava an account ? <router-link to="/signIn">Sgin In</router-link> </p>
+                <button class="btn  rounded-5 text-light p-2 px-5">CREATE ACCOUNT</button>
+                <p class="mt-4">Already hava an account ? <router-link class="ro" to="/signIn">Sgin In</router-link> </p>
             </div>
         </div>
     </div>
@@ -45,5 +49,12 @@
         border-bottom: 2px solid rgb(0, 0, 0);
         outline: none;
     }
+}
+.btn {
+  background-color: #f39999;
+}
+.ro{
+    color: #f39999;
+
 }
 </style>
