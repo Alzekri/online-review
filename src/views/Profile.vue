@@ -1,16 +1,19 @@
 <template>
     <div class="main">
         <Nabvar></Nabvar>
+        {{ userData }}a
+
         <div class="d-flex p-3 justify-content-around bg-secondary rounded-5 m-2">
-            <img src="@/assets/logo.webp" alt="" width="100" >
-            <h3 class="text-light mt-4  ">Albatool </h3>
+            <img :src="userData.user_img" alt="" width="100">
+            <h3 class="text-light mt-4  ">{{ userData.user_name }} </h3>
             <h3 class="text-light mt-4  ">12 Posts </h3>
-            <router-link to="/create" class="text-decoration-none"><h3 class="text-light mt-4  ">+ADD </h3>
-</router-link>
+            <router-link to="/create" class="text-decoration-none">
+                <h3 class="text-light mt-4  ">+ADD </h3>
+            </router-link>
         </div>
 
         <div class="d-flex justify-content-between flex-wrap">
-        
+
             <div class="border border-dark rounded-5 m-3 p-3" style="width: 30%;">
                 <div class="d-flex mb-2">
                     <img src="@/assets/logo.webp" class="rounded-5" alt="" width="50">
@@ -38,12 +41,13 @@
                         <div class="comment-author">Jane Doe</div>
                         <div class="comment-text">Love the new look!</div>
                     </div>
-                    <div class="d-flex "> 
-                        <input type=" text" class="form-control w-75 rounded-5" placeholder="Write Your Comment"/>
+                    <div class="d-flex ">
+                        <input type=" text" class="form-control w-75 rounded-5" placeholder="Write Your Comment" />
                         <button class="btn  rounded-5 text-light  px-4 ms-3">post</button>
                     </div>
                 </div>
-            </div><div class="border border-dark rounded-5 m-3 p-3" style="width: 30%;">
+            </div>
+            <div class="border border-dark rounded-5 m-3 p-3" style="width: 30%;">
                 <div class="d-flex mb-2">
                     <img src="@/assets/logo.webp" class="rounded-5" alt="" width="50">
                     <p class="m-2 mx-5 border-bottom">Samar Ali</p>
@@ -70,12 +74,13 @@
                         <div class="comment-author">Jane Doe</div>
                         <div class="comment-text">Love the new look!</div>
                     </div>
-                    <div class="d-flex "> 
-                        <input type=" text" class="form-control w-75 rounded-5" placeholder="Write Your Comment"/>
+                    <div class="d-flex ">
+                        <input type=" text" class="form-control w-75 rounded-5" placeholder="Write Your Comment" />
                         <button class="btn  rounded-5 text-light  px-4 ms-3">post</button>
                     </div>
                 </div>
-            </div><div class="border border-dark rounded-5 m-3 p-3" style="width: 30%;">
+            </div>
+            <div class="border border-dark rounded-5 m-3 p-3" style="width: 30%;">
                 <div class="d-flex mb-2">
                     <img src="@/assets/logo.webp" class="rounded-5" alt="" width="50">
                     <p class="m-2 mx-5 border-bottom">Samar Ali</p>
@@ -102,8 +107,8 @@
                         <div class="comment-author">Jane Doe</div>
                         <div class="comment-text">Love the new look!</div>
                     </div>
-                    <div class="d-flex "> 
-                        <input type=" text" class="form-control w-75 rounded-5" placeholder="Write Your Comment"/>
+                    <div class="d-flex ">
+                        <input type=" text" class="form-control w-75 rounded-5" placeholder="Write Your Comment" />
                         <button class="btn  rounded-5 text-light  px-4 ms-3">post</button>
                     </div>
                 </div>
@@ -114,6 +119,11 @@
 
 <script setup lang="ts">
 import Nabvar from '@/components/Nabvar.vue';
+import { computed } from 'vue';
+import { useUserStore } from '@/store/userStore'; // adjust path as necessary
+const userStore = useUserStore();
+const userData = computed(() => userStore.userData);
+
 </script>
 
 <style lang="scss" scoped>
@@ -131,5 +141,4 @@ import Nabvar from '@/components/Nabvar.vue';
 
 .comment-text {
     margin-left: 20px;
-}
-</style>
+}</style>
