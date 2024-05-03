@@ -12,7 +12,7 @@
             </ul>
         </div>
         <div class="d-flex justify-content-between flex-wrap">
-            <div v-for="post in currentPosts" :key="post.post_id"  class="border border-dark rounded-5 m-3 p-3"
+            <div v-for="post in currentPosts" :key="post.post_id" class="border border-dark rounded-5 m-3 p-3"
                 style="width: 30%;">
                 <div class="d-flex mb-2">
                     <img src="@/assets/avatar.jpg" class="rounded-5" alt="" width="50">
@@ -38,8 +38,9 @@
                         <hr class="mx-5 ">
                     </div>
                     <div class="d-flex ">
-                        <input type=" text" class="form-control w-75 rounded-5" placeholder="Write Your Comment" />
-                        <button class="btn  rounded-5 text-light  px-4 ms-3">post</button>
+                        <input v-model="post.newComment" type="text" class="form-control w-75 rounded-5"
+                            placeholder="Write Your Comment" />
+                        <button class="btn  rounded-5 text-light  px-4 ms-3" @click="postComment(post)">post</button>
                     </div>
                 </div>
             </div>
@@ -60,6 +61,9 @@ const fetchPosts = async () => {
     try {
         const response = await axios.get('http://localhost/onlineReview_api/api/posts/read_all.php');
         posts.value = response.data.data;
+        posts.value.forEach(post => {
+            post.newComment = ''; // Initialize newComment for each post
+        });
     } catch (error) {
         console.error('Failed to fetch posts:', error);
     }
@@ -71,10 +75,33 @@ const fetchPostsFriends = async () => {
             user_id: localStorage.getItem("userId"),
         });
         postsFriends.value = response.data.data;
+        posts.value.forEach(post => {
+            post.newComment = ''; // Initialize newComment for each post
+        });
     } catch (error) {
         console.error('Failed to fetch friends posts:', error);
     }
-}; 
+};
+const postComment = async (post) => {
+    const commentData = {
+        post_id: post.post_id,
+        user_id: localStorage.getItem("userId"),
+        comment_content: post.newComment
+    };
+    try {
+        const response = await axios.post('http://localhost/onlineReview_api/api/comments/create.php', commentData);
+        if (response.data.message === 'Success Created') {
+            // Optionally, fetch comments again or just push the new comment to the post's comments array
+            post.comments.push({
+                comment_content: post.newComment,
+                comment_user_name: name, // Assuming you wantto show the user's name
+            });
+            post.newComment = ''; // Clear the input after posting
+        }
+    } catch (error) {
+        console.error('Failed to post comment:', error);
+    }
+};
 
 const selectView = (view) => {
     if (view === 'all') {
