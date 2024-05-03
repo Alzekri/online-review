@@ -1,11 +1,9 @@
 <template>
     <div class="main">
         <Nabvar></Nabvar>
-        {{ userData }}a
-
         <div class="d-flex p-3 justify-content-around bg-secondary rounded-5 m-2">
-            <img :src="userData.user_img" alt="" width="100">
-            <h3 class="text-light mt-4  ">{{ userData.user_name }} </h3>
+            <img :src="logo" alt="" width="100">
+            <h3 class="text-light mt-4  ">{{ name }} </h3>
             <h3 class="text-light mt-4  ">12 Posts </h3>
             <router-link to="/create" class="text-decoration-none">
                 <h3 class="text-light mt-4  ">+ADD </h3>
@@ -119,11 +117,8 @@
 
 <script setup lang="ts">
 import Nabvar from '@/components/Nabvar.vue';
-import { computed } from 'vue';
-import { useUserStore } from '@/store/userStore'; // adjust path as necessary
-const userStore = useUserStore();
-const userData = computed(() => userStore.userData);
-
+const logo = localStorage.getItem("userImage") 
+const name = localStorage.getItem("userName") 
 </script>
 
 <style lang="scss" scoped>
@@ -141,4 +136,5 @@ const userData = computed(() => userStore.userData);
 
 .comment-text {
     margin-left: 20px;
-}</style>
+}
+</style>

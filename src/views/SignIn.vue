@@ -13,39 +13,37 @@
             </div>
             <div class="display-flex">
                 <label for="password" class="me-3 mt-4">PASSWORD:</label>
-                <input v-model="form.password" type="password" id="password" placeholder="Enter Your PASSWORD" class="input-field">
+                <input v-model="form.password" type="password" id="password" placeholder="Enter Your PASSWORD"
+                    class="input-field">
             </div>
             <div class="m-5 ps-5">
-                <button @click="login" class="btn rounded-5 text-light p-2 px-5">Sign In</button>
+                <button @click="loginUser" class="btn rounded-5 text-light p-2 px-5">Sign In</button>
                 <p class="mt-4">No account? <router-link class="ro" to="/signUp">Sign Up</router-link></p>
             </div>
-            <div v-if="userData">
-                <h4>User Info:</h4>
-                <p>Name: {{ userData }}</p> <!-- Adjust according to your data structure -->
-            </div>
+
         </div>
     </div>
 </template>
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-import { useUserStore } from '@/store/userStore'; // adjust path as necessary
-import { useRouter } from 'vue-router';
+import useUserStore from "@/store/userStore";
+import { storeToRefs } from 'pinia';
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
-const userStore = useUserStore();
 const form = ref({ email: '', password: '' });
 const router = useRouter(); // Initialize router instance
 
-const login = async () => {
+const loginUser = async () => {
     try {
-        await userStore.login(form.value.email, form.value.password);
-        // Navigate to the profile page after successful login
+        const { login } = useUserStore();
+        await login(form.value.email, form.value.password);
+        const { userData } = storeToRefs(useUserStore());
         router.push('/profile');
     } catch (error: any) {
         alert(error.message);
     }
 };
 
-const userData = computed(() => userStore.userData);
 </script>
  
 <style scoped>
@@ -70,10 +68,12 @@ const userData = computed(() => userStore.userData);
         outline: none;
     }
 }
+
 .btn {
-  background-color: #f39999;
+    background-color: #f39999;
 }
-.ro{
+
+.ro {
     color: #f39999;
 
 }

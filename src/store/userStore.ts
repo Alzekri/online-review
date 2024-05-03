@@ -4,7 +4,8 @@ import axios from 'axios';
 
 export const useUserStore = defineStore('user', {
     state: () => ({
-        userData: null,
+        userData: {},
+
     }),
     actions: {
         async login(email:string, password:string) {
@@ -15,6 +16,10 @@ export const useUserStore = defineStore('user', {
                 });
                 if (response.data.message === 'Success Login') {
                     this.userData = response.data.data;
+                    localStorage.setItem("userName",this.userData.user_name);
+                    localStorage.setItem("userId",this.userData.user_id.toString());
+                    localStorage.setItem("userImage", this.userData.user_img);
+                    
                 } else {
                     throw new Error('Login failed');
                 }
@@ -25,3 +30,4 @@ export const useUserStore = defineStore('user', {
         }
     }
 });
+export default useUserStore;
