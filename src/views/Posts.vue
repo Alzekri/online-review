@@ -15,7 +15,7 @@
             <div v-for="post in currentPosts" :key="post.post_id"  class="border border-dark rounded-5 m-3 p-3"
                 style="width: 30%;">
                 <div class="d-flex mb-2">
-                    <img src="@/assets/logo.webp" class="rounded-5" alt="" width="50">
+                    <img src="@/assets/avatar.jpg" class="rounded-5" alt="" width="50">
                     <p class="m-2 mx-5 border-bottom">{{ post.user_name }}</p>
                     <a class="m-2" :href="post.post_link"> click to open</a>
                 </div>
@@ -74,7 +74,7 @@ const fetchPostsFriends = async () => {
     } catch (error) {
         console.error('Failed to fetch friends posts:', error);
     }
-};
+}; 
 
 const selectView = (view) => {
     if (view === 'all') {
