@@ -65,7 +65,7 @@ const fetchPosts = async () => {
 
 const filteredPosts = computed(() => {
     if (!searchTerm.value) {
-        return posts.value;
+        return []; // Return an empty array when search term is empty
     }
     return posts.value.filter(post =>
         post.post_title.toLowerCase().includes(searchTerm.value.toLowerCase()) ||
