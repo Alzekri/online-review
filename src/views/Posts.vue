@@ -1,16 +1,7 @@
 <template>
     <div class="main">
         <Nabvar></Nabvar>
-        <div class="dropdown mt-3 ms-5 ">
-            <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Filtering
-            </button>
-            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-                <li><a class="dropdown-item" href="#" @click="selectView('all')">All Posts</a></li>
-                <li><a class="dropdown-item" href="#" @click="selectView('friends')">Friends</a></li>
-            </ul>
-        </div>
+        
         <div class="d-flex justify-content-between flex-wrap">
             <div v-for="post in currentPosts" :key="post.post_id" class="border border-dark rounded-5 m-3 p-3"
                 style="width: 30%;">
@@ -48,75 +39,80 @@
         </div>
     </div>
 </template>
+ 
 <script setup lang="ts">
 import Nabvar from '@/components/Nabvar.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import axios from 'axios';
 
 const posts = ref([]);
+const words = ref([]);
 const postsFriends = ref([]);
-const currentPosts = ref([]); // Reactive variable to hold the currently displayed posts
+const currentPosts = ref([]);
 
 const fetchPosts = async () => {
-    try {
-        const response = await axios.get('http://localhost/onlineReview_api/api/posts/read_all.php');
-        posts.value = response.data.data;
-        posts.value.forEach(post => {
-            post.newComment = ''; // Initialize newComment for each post
-        });
-    } catch (error) {
-        console.error('Failed to fetch posts:', error);
-    }
+  try {
+    const response = await axios.get('http://localhost/onlineReview_api/api/posts/read_all.php');
+    posts.value = response.data.data;
+    posts.value.forEach(post => {
+      post.newComment = ''; // Initialize newComment for each post
+    });
+  } catch (error) {
+    console.error('Failed to fetch posts:', error);
+  }
 };
 
 const fetchPostsFriends = async () => {
-    try {
-        const response = await axios.post('http://localhost/onlineReview_api/api/posts/read_friends.php', {
-            user_id: localStorage.getItem("userId"),
-        });
-        postsFriends.value = response.data.data;
-        posts.value.forEach(post => {
-            post.newComment = ''; // Initialize newComment for each post
-        });
-    } catch (error) {
-        console.error('Failed to fetch friends posts:', error);
-    }
-};
-const postComment = async (post) => {
-    const commentData = {
-        post_id: post.post_id,
-        user_id: localStorage.getItem("userId"),
-        comment_content: post.newComment
-    };
-    try {
-        const response = await axios.post('http://localhost/onlineReview_api/api/comments/create.php', commentData);
-        if (response.data.message === 'Success Created') {
-            // Optionally, fetch comments again or just push the new comment to the post's comments array
-            post.comments.push({
-                comment_content: post.newComment,
-                comment_user_name: name, // Assuming you wantto show the user's name
-            });
-            post.newComment = ''; // Clear the input after posting
-        }
-    } catch (error) {
-        console.error('Failed to post comment:', error);
-    }
+  try {
+    const response = await axios.post('http://localhost/onlineReview_api/api/posts/read_friends.php', {
+      user_id: localStorage.getItem("userId"),
+    });
+    postsFriends.value = response.data.data;
+    posts.value.forEach(post => {
+      post.newComment = ''; // Initialize newComment for each post
+    });
+  } catch (error) {
+    console.error('Failed to fetch friends posts:', error);
+  }
 };
 
-const selectView = (view) => {
-    if (view === 'all') {
-        currentPosts.value = posts.value;
-    } else {
-        currentPosts.value = postsFriends.value;
-    }
+const fetchWords = async () => {
+  try {
+    const response = await axios.post('http://localhost/onlineReview_api/api/words/read.php', {
+      user_id: localStorage.getItem("userId"),
+    });
+    words.value = response.data.data;
+  } catch (error) {
+    console.error('Failed to fetch words:', error);
+  }
+};
+
+const postComment = async (post) => {
+  // Your post comment logic
+};
+
+const selectView = () => {
+  const filteredPosts = posts.value.filter(post => {
+    return words.value.some(word => {
+      const wordContent = word.word_content.toLowerCase();
+      const postTitle = post.post_title.toLowerCase();
+      const postDescription = post.post_description.toLowerCase();
+      return postTitle.includes(wordContent) || postDescription.includes(wordContent);
+    });
+  });
+  currentPosts.value = filteredPosts;
 };
 
 onMounted(() => {
-    fetchPosts().then(() => selectView('all')); // Default view
-    fetchPostsFriends();
+  fetchPosts();
+  fetchPostsFriends();
+  fetchWords();
 });
 
+watch([posts, words], selectView, { deep: true });
 </script>
+
+
 <style lang="scss" scoped>
 .main {
     margin: 20px 80px;

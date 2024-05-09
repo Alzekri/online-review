@@ -2,9 +2,10 @@
     <div class="main">
         <Nabvar></Nabvar>
         <!-- Bind the input to the searchTerm -->
-        <div class="p-3 w-50 m-auto">
-            <input type="text" class="form-control rounded-5" placeholder="Search" v-model="searchTerm">
-        </div>
+        <div class=" d-flex p-3 w-50 m-auto">
+        <input type="text" class="form-control rounded-5" placeholder="Search" ref="searchInput" v-model="searching">
+        <button @click="filterPosts" class="btn rounded-5 text-light px-4 ms-3">Search</button>
+    </div>
         <!-- Update to iterate over filteredPosts instead of posts -->
         <div class="d-flex justify-content-between flex-wrap">
             <div v-for="post in filteredPosts" :key="post.post_id" class="border border-dark rounded-5 m-3 p-3"
@@ -48,9 +49,8 @@ import Nabvar from '@/components/Nabvar.vue';
 import { ref, computed, onMounted } from 'vue';
 import axios from 'axios';
 
-const searchTerm = ref('');
 const posts = ref([]);
-
+const searching = ref('')
 const fetchPosts = async () => {
     try {
         const response = await axios.get('http://localhost/onlineReview_api/api/posts/read_all.php');
@@ -62,16 +62,21 @@ const fetchPosts = async () => {
         console.error('Failed to fetch posts:', error);
     }
 };
+const filteredPosts = ref([]);
+const searchInput = ref(null); // Define the searchInput ref
 
-const filteredPosts = computed(() => {
-    if (!searchTerm.value) {
-        return []; // Return an empty array when search term is empty
+const filterPosts = () => {
+    const searchValue = searchInput.value.value.trim().toLowerCase(); // Access the input value using searchInput.value
+    if (searchValue) {
+        filteredPosts.value = posts.value.filter(post =>
+            post.post_title.toLowerCase().includes(searchValue) ||
+            post.post_description.toLowerCase().includes(searchValue)
+        );
+        addWord();
+    } else {
+        filteredPosts.value = posts.value;
     }
-    return posts.value.filter(post =>
-        post.post_title.toLowerCase().includes(searchTerm.value.toLowerCase()) ||
-        post.post_description.toLowerCase().includes(searchTerm.value.toLowerCase())
-    );
-});
+};
 
 const postComment = async (post) => {
     const commentData = {
@@ -90,6 +95,18 @@ const postComment = async (post) => {
         }
     } catch (error) {
         console.error('Failed to post comment:', error);
+    }
+};
+
+const addWord = async () => {
+    try {
+        const response = await axios.post('http://localhost/onlineReview_api/api/words/create.php', {
+            user_id:localStorage.getItem("userId"),
+            word_content:searching.value
+            
+        });
+    } catch (error) {
+        console.error('Failed to create word:', error);
     }
 };
 
