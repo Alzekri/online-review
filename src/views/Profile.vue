@@ -9,10 +9,10 @@
                 <h3 class="text-light mt-4">+ADD</h3>
             </router-link>
         </div>
-        <div class="d-flex justify-content-between flex-wrap">
+        <div class="d-flex justify-content-start flex-wrap">
             <div v-for="post in posts" :key="post.post_id" class="border border-dark rounded-5 m-3 p-3" style="width: 30%;">
                 <div class="d-flex mb-2">
-                    <img src="@/assets/avatar.jpg" class="rounded-5" alt="" width="50">
+                    <img  :src="post.user_img" class="rounded-5" alt="" width="50">
                     <p class="m-2 mx-5 border-bottom">{{ post.user_name }}</p>
                     <a class="m-2" :href="post.post_link">click to open</a>
                 </div>
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="comments mt-5">
-                    <div class="comment" v-for="comment in post.comments" :key="comment.comment_id">
+                    <div class="comment" v-for="comment in post.comments" :key="comment.comment_id" :class="comment.comment_user_name ==  post.user_name ?'text-info':''" >
                         <div class="comment-author">{{ comment.comment_user_name }}</div>
                         <div class="comment-text">{{ comment.comment_content }}</div>
                         <hr class="mx-5">

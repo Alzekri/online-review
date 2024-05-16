@@ -34,7 +34,9 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 interface UserForm {
   user_name: string;
   user_email: string;
@@ -70,6 +72,8 @@ interface UserForm {
         const response = await axios.post('http://localhost/onlineReview_api/api/users/create.php', formData);
         console.log(response.data);
         alert(response.data.message);
+        router.push('/signIn');
+
       } catch (error) {
         console.error('There was an error!', error);
       }

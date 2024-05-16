@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <div class="comments mt-5">
-                    <div class="comment" v-for="comment in post.comments" :key="comment.comment_id">
+                    <div class="comment" v-for="comment in post.comments" :key="comment.comment_id" :class="comment.comment_user_name ==  post.user_name ?'text-info':''" >
                         <div class="comment-author">{{ comment.comment_user_name }}</div>
                         <div class="comment-text">{{ comment.comment_content }}</div>
                         <hr class="mx-5 ">
